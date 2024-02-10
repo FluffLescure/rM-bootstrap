@@ -195,8 +195,8 @@ main() {
     generate-opkg-conf
 
     # Install base Entware packages
-    /home/root/.local/bin/opkg update
-    /home/root/.local/bin/opkg install entware-opt
+    /opt/bin/opkg update
+    /opt/bin/opkg install entware-opt
 
     # Fix for multiuser environment
     chmod 777 /opt/tmp
@@ -239,16 +239,16 @@ main() {
     [[ ! -f /opt/bin/wget ]] && additional_packages+=(wget-ssl)
 
     if [[ ${#additional_packages[@]} -gt 0 ]]; then
-        /home/root/.local/bin/opkg install "${additional_packages[@]}"
+        /opt/bin/opkg install "${additional_packages[@]}"
     fi
 
     if [[ $# -gt 0 ]]; then
-        /home/root/.local/bin/opkg install "$@"
+        /opt/bin/opkg install "$@"
     fi
 
     # Reinstall toltec-bootstrap to mark its files as managed,
     # to install its dependencies, and to set the user’s PATH
-    /home/root/.local/bin/opkg install toltec-bootstrap
+    /opt/bin/opkg install toltec-bootstrap
     log "After each system upgrade, run 'toltecctl reenable' to re-enable Toltec"
 }
 
