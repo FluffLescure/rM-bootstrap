@@ -177,6 +177,13 @@ main() {
 
     log "Installing Toltec and Entware"
 
+    log "home dir"
+    ls /home/root
+    log "local dir"
+    ls /home/root/.local/
+    log "bin dir"
+    ls /home/root/.local/bin
+
     # Create bind mount from user directory to /opt
     rm -rf /opt
     add-bind-mount "$toltec_src" "$toltec_dest"
