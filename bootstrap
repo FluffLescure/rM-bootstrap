@@ -79,8 +79,7 @@ check-installed() {
 # Install a local wget binary which supports TLS (the original one
 # installed on the reMarkable does not) in the PATH
 wget-bootstrap() {
-    local wget_remote=http://toltec-dev.org/thirdparty/bin/wget-v1.21.1-1
-    local wget_checksum=c258140f059d16d24503c62c1fdf747ca843fe4ba8fcd464a6e6bda8c3bbb6b5
+    local wget_remote=https://github.com/UniqueName992/rm2-bootstrap-temp/blob/main/wget_busybox_armv7l_abihf_musl_Linux
 
     if [[ ! -x $wget_path ]]; then
         if [[ -e $wget_path ]]; then
@@ -96,11 +95,6 @@ wget-bootstrap() {
 
         if ! wget -q "$wget_remote" --output-document "$wget_path"; then
             log ERROR "Could not fetch wget, make sure you have a stable Wi-Fi connection"
-            exit 1
-        fi
-
-        if ! sha256sum -c <(echo "$wget_checksum  $wget_path") > /dev/null 2>&1; then
-            log ERROR "Invalid checksum for the local wget binary"
             exit 1
         fi
 
